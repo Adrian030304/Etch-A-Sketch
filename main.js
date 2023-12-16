@@ -2,7 +2,7 @@
 let container = document.querySelector(".container")
 let grid ;
 let btn = document.querySelector("button");
-let btg = document.querySelector("#btg")
+let btg = document.querySelector("#btnG")
 NodeList.prototype.forEach = Array.prototype.forEach;
 
 function sketchPad(nr){
@@ -22,4 +22,7 @@ for(const child of container.children){
 }
 
 }
-
+btg.addEventListener("mouse",function(){
+    nr = prompt("Input the size of the sketch pad");
+    sketchPad(nr)
+})
