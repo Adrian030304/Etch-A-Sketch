@@ -9,6 +9,7 @@ body{
     justify-content: center;
     align-items: center;
     height:100vh;
+    flex-direction: column;
 
 }
 .container{
@@ -29,4 +30,7 @@ body{
     width: 20px;
     
     
+}
+button{
+    margin-top: 20px;
 }
