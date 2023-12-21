@@ -14,7 +14,8 @@ body{
 }
 .container{
     display: flex;
-    width: 320px;
+    max-width: 1150px;
+    max-height: 450px;
     height: auto;
     flex-direction: row;
     flex-wrap: wrap;
