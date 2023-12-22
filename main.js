@@ -4,6 +4,13 @@ let grid ;
 let btn = document.querySelector("button");
 let btg = document.querySelector("#btnG")
 
+const randomColor = () => {
+    let r = Math.floor(Math.random()* 256); // Random between 0-255
+    let g = Math.floor(Math.random()* 256); // Random between 0-255
+    let b = Math.floor(Math.random()* 256); // Random between 0-255
+    return `rgb(${r},${g},${b})`
+}
+
 
 
 function sketchPad(size){
@@ -14,7 +21,7 @@ function sketchPad(size){
         container.appendChild(grid)
         grid.addEventListener("mouseover",function(e){
     
-            e.target.style.backgroundColor = "orange";
+            e.target.style.backgroundColor = randomColor();
         });
     }
 
