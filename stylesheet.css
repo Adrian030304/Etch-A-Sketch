@@ -9,14 +9,16 @@ body{
     justify-content: center;
     align-items: center;
     height:100vh;
-    flex-direction: row-reverse;
+    flex-direction: column-reverse;
     gap: 10px;
 
 }
 .container{
     display: flex;
+    flex-basis: 2;
+    flex-shrink: 1;
     max-width: 960px;
-    max-height: 500px;
+    max-height: 960px;
     flex-direction: row;
     flex-wrap: wrap;
     
@@ -30,6 +32,7 @@ body{
     border-style:solid;
     border-width: 1px;
     min-width: 10px;
+    
     
     
 }
