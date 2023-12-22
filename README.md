@@ -1,6 +1,6 @@
 #Description:
 
-Etch-A-Sketch is an interactive pixel drawing application developed by Adrian030304 using HTML, SCSS, and JavaScript.
+Etch-A-Sketch is an interactive pixel drawing application developed by Adrian030304 using HTML, CSS, and JavaScript.
 
 #Features:
 
