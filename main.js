@@ -11,13 +11,14 @@ function sketchPad(size){
     for(let i = 0; i< size*size; i++){
         grid = document.createElement("div")
         container.appendChild(grid)
-        
-    }
-}
-container.addEventListener("mouseover",function(e){
+        grid.addEventListener("mouseover",function(e){
     
-    e.target.style.backgroundColor = "orange";
-});
+            e.target.style.backgroundColor = "orange";
+        });
+    }
+
+}
+
 
 
 btg.addEventListener("click",function(){

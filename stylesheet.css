@@ -27,7 +27,7 @@ body{
     
 }
 .container div{
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
     min-height: 10px;
     border-style:solid;
     border-width: 1px;
