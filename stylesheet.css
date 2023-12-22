@@ -36,7 +36,8 @@ body{
     
 }
 .buttons{
-   position: absolute;
+   position:fixed;
    top: 10px;
+   margin-bottom: 10px;
 
 }

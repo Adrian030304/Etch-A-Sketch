@@ -5,6 +5,7 @@ let btn = document.querySelector("button");
 let btg = document.querySelector("#btnG")
 
 
+
 function sketchPad(size){
     container.innerHTML = "";
 
