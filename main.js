@@ -1,7 +1,6 @@
 
 let container = document.querySelector(".container")
 let grid ;
-let btn = document.querySelector("button");
 let btg = document.querySelector("#btnG")
 
 const randomColor = () => {
