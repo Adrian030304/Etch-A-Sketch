@@ -5,15 +5,17 @@ let btn = document.querySelector("button");
 let btg = document.querySelector("#btnG")
 
 
-function sketchPad(nr){
+function sketchPad(size){
+    container.innerHTML = "";
 
-
-for(let i = 0; i< nr*nr; i++){
-    grid = document.createElement("div")
-    container.appendChild(grid)
-}
+    for(let i = 0; i< size*size; i++){
+        grid = document.createElement("div")
+        container.appendChild(grid)
+        
+    }
 }
 
 btg.addEventListener("click",function(){
-    sketchPad(36);
+    const size = prompt("Enter the number of squares per side (maximum: 100):")
+    sketchPad(size)
 })
