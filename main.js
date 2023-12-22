@@ -13,17 +13,12 @@ function sketchPad(size){
         container.appendChild(grid)
         
     }
-    /*
-    for(let i = 0; i<size;i++){
-        grid = document.createElement("div")
-        container.appendChild(grid)
-        for(let j = 0; j<size;j++){
-            grid = document.createElement("div")
-            container.appendChild(grid)
-        }
-    }
-   */
 }
+container.addEventListener("mouseover",function(e){
+    
+    e.target.style.backgroundColor = "orange";
+});
+
 
 btg.addEventListener("click",function(){
     const size = prompt("Enter the number of squares per side (maximum: 100):")
