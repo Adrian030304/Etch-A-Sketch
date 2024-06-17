@@ -1,3 +1,5 @@
+Live: https://sketcheetch1.netlify.app
+
 #Description:
 
 Etch-A-Sketch is an interactive pixel drawing application developed by Adrian030304 using HTML, CSS, and JavaScript.
