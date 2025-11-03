@@ -1,7 +1,7 @@
 
 let container = document.querySelector(".container");
 let btnReqChange = document.querySelector("#btn-change");
-const inputElement = document.createElement('input');
+let inputElement = document.createElement('input');
 let warningMessage = document.createElement('span');
 const filterLabel = document.createElement('label')
 const filterElement = document.createElement('select');
@@ -81,21 +81,24 @@ function sketchPad(size){
 
 
 btnReqChange.addEventListener("click", function() {
-
-    console.log(inputElement.value)
+    
+    if (warningMessage.innerText.length !== 0) {warningMessage.innerText = '';}
+    
     if (inputElement.value.trim().length === 0 || isNaN(inputElement.value)) {
-        warningMessage.innerText += `Error: You inserted the wrong value. ${inputElement.value.trim()} is not valid`
-        return;
+        console.log(inputElement.value)
+        warningMessage.innerText = `Error: You inserted the wrong value. ${inputElement.value} is not valid`
+        container.innerHTML = ''
+        container.style = ''
+
+    } else {
+        let size = Number(inputElement.value) > 0 ? Number(inputElement.value) : Math.abs(Number(inputElement.value)) ;
+        let selectedOption = filterElement.selectedOptions[0]
+
+        if(size > 0 && size <=100){
+            sketchPad(size);
+            processOption(selectedOption)
+        }
+        inputElement.value = '';
     }
 
-    let size = Number(inputElement.value) > 0 ? Number(inputElement.value) : Math.abs(Number(inputElement.value)) ;
-    let selectedOption = filterElement.selectedOptions[0]
-    console.log(selectedOption)
-    console.log(size)
-
-    if(size > 0 && size <=100){
-        sketchPad(size);
-        processOption(selectedOption)
-    }
-    inputElement.value = ''
 })
