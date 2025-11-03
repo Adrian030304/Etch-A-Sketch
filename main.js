@@ -1,10 +1,24 @@
 
-let container = document.querySelector(".container")
+let container = document.querySelector(".container");
 let grid ;
-let btnReqChange = document.querySelector("#btn-change")
-const inputElement = document.createElement('input')
-inputElement.type = 'number'
-btnReqChange.parentElement.appendChild(inputElement)
+let btnReqChange = document.querySelector("#btn-change");
+const inputElement = document.createElement('input');
+inputElement.type = 'number';
+
+const filterElement = document.createElement('select');
+
+
+btnReqChange.parentElement.appendChild(inputElement);
+btnReqChange.parentElement.appendChild(filterElement)
+
+const options = ['none', 'square', 'round']
+
+options.forEach(option => {
+    const o = document.createElement('option')
+    o.innerText = option
+    filterElement.appendChild(o)
+})
+
 
 
 

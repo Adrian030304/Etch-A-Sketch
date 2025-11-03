@@ -63,3 +63,7 @@ body{
     border-radius: 5px;
 
 }
+
+#btn-change:hover {
+    background-color: #33c8fa;
+}
