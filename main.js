@@ -1,10 +1,13 @@
 
 let container = document.querySelector(".container")
 let grid ;
-let btg = document.querySelector("#btnG")
+let btnReqChange = document.querySelector("#btn-change")
 const inputElement = document.createElement('input')
 inputElement.type = 'number'
-btg.parentElement.appendChild(inputElement)
+btnReqChange.parentElement.appendChild(inputElement)
+
+
+
 
 const randomColor = () => {
     let r = Math.floor(Math.random()* 256); // Random between 0-255
@@ -39,7 +42,7 @@ function sketchPad(size){
 
 
 
-btg.addEventListener("click",function(){
+btnReqChange.addEventListener("click",function(){
     // const size = prompt("Enter the number of squares per side (maximum: 100):")
     console.log(inputElement.value)
     if (inputElement.value.trim().length === 0 || isNaN(inputElement.value)) {
