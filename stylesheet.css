@@ -66,3 +66,22 @@ body{
 #btn-change:hover {
     background-color: #33c8fa;
 }
+
+.error {
+    color: rgb(153, 17, 17);
+}
+
+.blank {
+    border-style: 'none';
+}
+
+.square {
+    border-style: solid;
+    border-width: 1px;
+}
+
+.round {
+    border-style:'solid';
+    border-width:'1px';
+    border-radius:'50px'
+}

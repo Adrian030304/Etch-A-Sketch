@@ -2,23 +2,24 @@
 let container = document.querySelector(".container");
 let btnReqChange = document.querySelector("#btn-change");
 const inputElement = document.createElement('input');
-
-inputElement.type = 'number';
-
+let warningMessage = document.createElement('span');
 const filterLabel = document.createElement('label')
 const filterElement = document.createElement('select');
 
-filterLabel.innerText = "Canvas options:"
+inputElement.type = 'number';
+filterLabel.innerText = "Canvas inner shape options:"
 filterElement.id = 'filterSelect';
 filterLabel.for = 'filterSelect';
 
+warningMessage.className = 'error'
+warningMessage.innerText = ""
 
 btnReqChange.parentElement.appendChild(inputElement);
 
-btnReqChange.parentElement.appendChild(filterLabel)
+btnReqChange.parentElement.appendChild(filterLabel);
 
-filterLabel.parentNode.insertBefore(filterElement, filterLabel.nextSibling)
-
+filterLabel.parentNode.insertBefore(filterElement, filterLabel.nextSibling);
+filterElement.parentNode.insertBefore(warningMessage, filterElement.nextSibling);
 
 const options = ['Square', 'Blank', 'Round']
 
@@ -35,28 +36,12 @@ options.forEach(option => {
 
 function processOption(option) {
 
-    const cStyles = {}
-    const squares = document.querySelectorAll('.grid-box');
+    const squares = document.querySelectorAll('.grid-box')
 
-    for (grid of squares) {
-        if (option.innerText.toLowerCase() === "square") {
+    option = option.innerText.toLowerCase();
 
-            cStyles.borderStyle = 'solid';
-            cStyles.borderWidth = '1px';
-            
-            Object.assign(grid.style, cStyles)
+    squares.forEach(s => s.classList.add(option));
 
-        } else if (option.innerText.toLowerCase() === "blank") {
-            
-            Object.assign(grid.style, {borderStyle: 'none'})
-        } else {
-
-            cStyles.borderStyle = 'solid';
-            cStyles.borderWidth = '1px';
-            cStyles.borderRadius = '50px'
-            Object.assign(grid.style, cStyles)
-        }
-    }
 }
 
 
@@ -96,16 +81,18 @@ function sketchPad(size){
 
 
 btnReqChange.addEventListener("click", function() {
-    
+
     console.log(inputElement.value)
     if (inputElement.value.trim().length === 0 || isNaN(inputElement.value)) {
-        alert("Invalid input . Please try again ! ")
+        warningMessage.innerText += `Error: You inserted the wrong value. ${inputElement.value.trim()} is not valid`
         return;
     }
+
     let size = Number(inputElement.value) > 0 ? Number(inputElement.value) : Math.abs(Number(inputElement.value)) ;
     let selectedOption = filterElement.selectedOptions[0]
     console.log(selectedOption)
     console.log(size)
+
     if(size > 0 && size <=100){
         sketchPad(size);
         processOption(selectedOption)
