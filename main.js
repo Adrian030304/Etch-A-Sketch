@@ -11,13 +11,15 @@ const filterElement = document.createElement('select');
 btnReqChange.parentElement.appendChild(inputElement);
 btnReqChange.parentElement.appendChild(filterElement)
 
-const options = ['none', 'square', 'round']
+const options = ['None', 'Square', 'Round']
 
 options.forEach(option => {
     const o = document.createElement('option')
     o.innerText = option
     filterElement.appendChild(o)
 })
+
+
 
 
 
