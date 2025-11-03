@@ -6,7 +6,12 @@ let warningMessage = document.createElement('span');
 const filterLabel = document.createElement('label')
 const filterElement = document.createElement('select');
 
+radio1 = createInputElement('radio-1', 'radio')
+radio2 = createInputElement('radio2', 'radio')
+
+
 inputElement.type = 'number';
+inputElement.placeholder = ' (1 - 100) '
 filterLabel.innerText = "Canvas inner shape options:"
 filterElement.id = 'filterSelect';
 filterLabel.for = 'filterSelect';
@@ -32,6 +37,18 @@ options.forEach(option => {
     }
 );
 
+const createInputElement = (input_id, input_type) => {
+    let r = document.createElement('input');
+    r.id = input_id;
+    r.type = input_type;
+    return r;
+}
+
+const createLabel = (label_for) => {
+    let l = document.createElement('label');
+    l.for = label_for;
+    return l;
+}
 
 
 function processOption(option) {
