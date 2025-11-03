@@ -2,6 +2,9 @@
 let container = document.querySelector(".container")
 let grid ;
 let btg = document.querySelector("#btnG")
+const inputElement = document.createElement('input')
+inputElement.type = 'number'
+btg.parentElement.appendChild(inputElement)
 
 const randomColor = () => {
     let r = Math.floor(Math.random()* 256); // Random between 0-255
@@ -14,6 +17,14 @@ const randomColor = () => {
 
 function sketchPad(size){
     container.innerHTML = "";
+    const customStyle = {
+        gridTemplateColumns: `repeat(${size}, auto)`,
+        border: "4px outset #44444e"
+    }
+    // container.style.gridTemplateColumns = customStyle.gridTemplateColumns
+    // container.style.border = customStyle.border
+    // container.style = {...customStyle}
+    Object.assign(container.style, customStyle)
 
     for(let i = 0; i< size*size; i++){
         grid = document.createElement("div")
@@ -29,10 +40,14 @@ function sketchPad(size){
 
 
 btg.addEventListener("click",function(){
-    const size = prompt("Enter the number of squares per side (maximum: 100):")
-    if(size > 0 && size <=100){
-    sketchPad(size);
-    }else{
+    // const size = prompt("Enter the number of squares per side (maximum: 100):")
+    console.log(inputElement.value)
+    if (inputElement.value.trim().length === 0 || isNaN(inputElement.value)) {
         alert("Invalid input . Please try again ! ")
+        return;
     }
+    let size = Number(inputElement.value) > 0 ? Number(inputElement.value) : Math.abs(Number(inputElement.value)) ;
+    console.log(size)
+    if(size > 0 && size <=100){sketchPad(size);}
+    inputElement.value = ''
 })
