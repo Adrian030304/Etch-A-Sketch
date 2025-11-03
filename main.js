@@ -35,7 +35,7 @@ options.forEach(option => {
 
 
 function processOption(option) {
-
+    
     const squares = document.querySelectorAll('.grid-box')
 
     option = option.innerText.toLowerCase();
@@ -60,17 +60,19 @@ const randomColor = () => {
 function sketchPad(size){
     container.innerHTML = "";
     const customStyle = {
-        gridTemplateColumns: `repeat(${size}, auto)`,
+        gridTemplateColumns: `repeat(${size}, 1fr)`,
         border: "4px outset #44444e"
     }
     
     Object.assign(container.style, customStyle)
 
-    for (let i = 0; i< size * size; i++) {
+    for (let i = 0; i < size * size; i++) {
 
         let grid = document.createElement("div");
         grid.className = "grid-box"
         container.appendChild(grid)
+        grid.style.height = `${512 / size}px`;
+        grid.style.width = `${512 / size}px`;
         grid.addEventListener("mouseover",function(e){
             e.target.style.backgroundColor = randomColor();
         });
@@ -79,14 +81,13 @@ function sketchPad(size){
 }
 
 
-
 btnReqChange.addEventListener("click", function() {
     
     if (warningMessage.innerText.length !== 0) {warningMessage.innerText = '';}
     
-    if (inputElement.value.trim().length === 0 || isNaN(inputElement.value)) {
+    if (inputElement.value.trim().length === 0 || isNaN(inputElement.value.trim())) {
         console.log(inputElement.value)
-        warningMessage.innerText = `Error: You inserted the wrong value. ${inputElement.value} is not valid`
+        warningMessage.innerText = `Error: You inserted the wrong value. It's not valid`
         container.innerHTML = ''
         container.style = ''
 
