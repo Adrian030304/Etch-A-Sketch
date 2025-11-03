@@ -66,17 +66,42 @@ function sketchPad(size){
     
     Object.assign(container.style, customStyle)
 
-    for (let i = 0; i < size * size; i++) {
+    // for (let i = 0; i < size * size; i++) {
 
+    //     let grid = document.createElement("div");
+    //     grid.className = "grid-box"
+    //     container.appendChild(grid)
+    //     grid.style.height = `${512 / size}px`;
+    //     grid.style.width = `${512 / size}px`;
+    //     grid.addEventListener("mouseover",function(e){
+    //         e.target.style.backgroundColor = randomColor();
+    //         console.log(e)
+    //         console.log(e.target)
+    //     });
+    // }
+
+    let j = 0;
+    while (j < size * size) {
         let grid = document.createElement("div");
         grid.className = "grid-box"
         container.appendChild(grid)
         grid.style.height = `${512 / size}px`;
         grid.style.width = `${512 / size}px`;
-        grid.addEventListener("mouseover",function(e){
-            e.target.style.backgroundColor = randomColor();
+        j++;
+    }
+
+    let grids = document.querySelectorAll('.grid-box')
+
+    for(let i = 0; i < size * size - size; i++) {
+        grids[i].addEventListener("mouseover",function(){
+            
+            if (i - size  >= 0) { grids[i - size].style.backgroundColor = randomColor(); }
+            grids[i].style.backgroundColor = randomColor();
+            grids[i+size].style.backgroundColor = randomColor();
+
         });
     }
+
 
 }
 
