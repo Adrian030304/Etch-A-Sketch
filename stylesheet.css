@@ -11,16 +11,20 @@ body{
     height:100vh;
     flex-direction: column-reverse;
     gap: 10px;
+    background-color: #DEDED1;
 
 }
 .container{
-    display: flex;
+    /* display: flex; */
     max-width: 960px;
     max-height: 960px;
-    flex-direction: row;
-    flex-wrap: wrap;
-    
-    
+    /* flex-direction: row;
+    flex-wrap: wrap; */
+    display: grid;
+    /* grid-template-columns: repeat(25, minmax(auto, 25px)); */
+    /* box-shadow: 8px 8px 17px 6px rgba(0,0,0,0.66);
+    -webkit-box-shadow: 8px 8px 17px 6px rgba(0,0,0,0.66);
+    -moz-box-shadow: 8px 8px 17px 6px rgba(0,0,0,0.66); */
     
     
 }
@@ -33,11 +37,29 @@ body{
     flex: 10 16 1%;
     
     
-    
+
 }
 .buttons{
-   position:fixed;
-   top: 10px;
-   margin-bottom: 10px;
+    position: fixed;    
+    top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    left: 10px;
+    gap: .5rem;
+
+}
+
+#btnG {
+    background-color: #008CBA;
+    border: none;
+    color: white;
+    padding: .2rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
 
 }
