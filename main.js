@@ -69,8 +69,11 @@ filterLabel.parentNode.insertBefore(filterElement, filterLabel.nextSibling);
 filterElement.parentNode.insertBefore(warningMessage, filterElement.nextSibling);
 warningMessage.parentNode.insertBefore(fieldSet, warningMessage.nextSibling);
 
+const radios = document.querySelectorAll('input[name="brushSize"]');
 
-
+radios.forEach(
+    (radio) => { radio.addEventListener('click', (e) => { e.checked = true; console.log(e) }); }
+)
 
 const options = ['Square', 'Blank', 'Round']
 
@@ -126,6 +129,13 @@ function sketchPad(size){
     //         console.log(e.target)
     //     });
     // }
+    let checkedRadio;
+    for (const radio of radios) {
+        if (radio.checked) {
+            checkedRadio = radio;
+        }
+    }
+    console.log(checkedRadio)
 
     let j = 0;
     while (j < size * size) {
@@ -139,13 +149,15 @@ function sketchPad(size){
 
     let grids = document.querySelectorAll('.grid-box')
 
-    for(let i = 0; i < size * size - size; i++) {
+    for(let i = 0; i < size * size; i++) {
         grids[i].addEventListener("mouseover",function(){
             
-            if (i - size  >= 0) { grids[i - size].style.backgroundColor = randomColor(); }
             grids[i].style.backgroundColor = randomColor();
-            grids[i+size].style.backgroundColor = randomColor();
-
+            
+            if (checkedRadio.value == 'multi') {
+                if (i - size  >= 0) { grids[i - size].style.backgroundColor = randomColor(); }
+                grids[i+size].style.backgroundColor = randomColor();
+            }
         });
     }
 
