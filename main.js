@@ -14,6 +14,7 @@ legendElement.innerText = "Choose your brush size: "
 clearAll.innerText = "Clear"
 clearAll.id = 'btn-clear'
 
+
 const canvas_size = () => {
     return inputElement.value;
 }
@@ -93,6 +94,8 @@ clearAll.addEventListener('click', () => {
         grid.style.backgroundColor = '#FFFFFF';
     }
 })
+
+clearAll.classList.add('invisible')
 
 const options = ['Square', 'Blank', 'Round']
 
@@ -193,7 +196,10 @@ btnReqChange.addEventListener("click", function() {
         if(size > 0 && size <=100){
             sketchPad(size);
             processOption(selectedOption);
-            
+            if (clearAll.classList.contains('invisible')){
+                clearAll.classList.remove('invisible')
+                clearAll.classList.add('visible')
+            }
         }
         // inputElement.value = '';
     }

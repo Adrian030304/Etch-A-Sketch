@@ -48,6 +48,22 @@ body{
 
 }
 
+#btn-clear {
+    background-color: #a20000;
+    border: none;
+    color: white;
+    padding: .2rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#btn-clear:hover {
+    background-color: #ff1d1d;
+}
+
 #btn-change {
     background-color: #008CBA;
     border: none;
@@ -55,7 +71,6 @@ body{
     padding: .2rem 1rem;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
@@ -84,4 +99,12 @@ body{
 .round {
     border-style: none;
     border-radius: 50%;
+}
+
+.invisible {
+    display: none;
+}
+
+.visible {
+    display: inline-block;
 }
