@@ -43,6 +43,7 @@ const createLabel = (label_for, inner_text) => {
 radio1 = createInputElement('radio1', 'radio')
 radio2 = createInputElement('radio2', 'radio')
 
+
 radio1.value = 'singular';
 radio2.value = 'multi';
 
@@ -79,20 +80,19 @@ fieldSet.parentNode.insertBefore(clearAll, fieldSet.nextSibling);
 
 const radios = document.querySelectorAll('input[name="brushSize"]');
 
-clearAll.addEventListener('click', () => {
-    const size = canvas_size()
-    let i = 0
-    let grids = document.querySelectorAll('.grid-box')
-    while (i < size * size) {
-        grids[i].style.backgroundColor = 'white'
-    }
-})
-
-console.log(clearAll)
+document.getElementById('radio1').checked = true;
 
 radios.forEach(
-    (radio) => { radio.addEventListener('click', (e) => { e.checked = true; console.log(e) }); }
+    (radio) => { radio.addEventListener('click', (e) => { e.checked = true; }); }
 )
+
+
+clearAll.addEventListener('click', () => {
+    let grids = document.querySelectorAll('.grid-box');
+    for (const grid of grids) {
+        grid.style.backgroundColor = '#FFFFFF';
+    }
+})
 
 const options = ['Square', 'Blank', 'Round']
 
@@ -127,13 +127,6 @@ const randomColor = () => {
 
 
 function sketchPad(size){
-    container.innerHTML = "";
-    const customStyle = {
-        gridTemplateColumns: `repeat(${size}, 1fr)`,
-        border: "4px outset #44444e"
-    }
-    
-    Object.assign(container.style, customStyle)
 
     // for (let i = 0; i < size * size; i++) {
 
@@ -148,9 +141,17 @@ function sketchPad(size){
     //         console.log(e.target)
     //     });
     // }
+
+    container.innerHTML = "";
+    const customStyle = {
+        gridTemplateColumns: `repeat(${size}, 1fr)`,
+        border: "4px outset #44444e"
+    }
+    
+    Object.assign(container.style, customStyle)
     
     checkedRadio = document.querySelector('input[name="brushSize"]:checked') ?? radio1;
-    console.log(checkedRadio)
+    
     let j = 0;
     while (j < size * size) {
         let grid = document.createElement("div");
@@ -162,19 +163,17 @@ function sketchPad(size){
     }
 
     let grids = document.querySelectorAll('.grid-box')
+        for(let i = 0; i < size * size; i++) {
+        grids[i].addEventListener("mouseover",function() {
 
-    for(let i = 0; i < size * size; i++) {
-        grids[i].addEventListener("mouseover",function(){
-            
             grids[i].style.backgroundColor = randomColor();
-            
-            if (checkedRadio.value == 'multi') {
-                if (i - size  >= 0) { grids[i - size].style.backgroundColor = randomColor(); }
-                grids[i+size].style.backgroundColor = randomColor();
-            }
+
+                if (checkedRadio.value == 'multi') {
+                    if (i - size  >= 0) { grids[i - size].style.backgroundColor = randomColor(); }
+                    grids[i+size].style.backgroundColor = randomColor();
+                }
         });
     }
-
 
 }
 
@@ -196,7 +195,7 @@ btnReqChange.addEventListener("click", function() {
             processOption(selectedOption);
             
         }
-        inputElement.value = '';
+        // inputElement.value = '';
     }
 
 })
