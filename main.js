@@ -6,10 +6,17 @@ let warningMessage = document.createElement('span');
 const filterLabel = document.createElement('label')
 const filterElement = document.createElement('select');
 const fieldSet = document.createElement('fieldset');
-
+const clearAll = document.createElement('button');
 
 const legendElement = document.createElement('legend');
 legendElement.innerText = "Choose your brush size: "
+
+clearAll.innerText = "Clear"
+clearAll.id = 'btn-clear'
+
+const canvas_size = () => {
+    return inputElement.value;
+}
 
 function mount(first_element, second_element) {
     const div = document.createElement('div');
@@ -68,8 +75,20 @@ btnReqChange.parentElement.appendChild(filterLabel);
 filterLabel.parentNode.insertBefore(filterElement, filterLabel.nextSibling);
 filterElement.parentNode.insertBefore(warningMessage, filterElement.nextSibling);
 warningMessage.parentNode.insertBefore(fieldSet, warningMessage.nextSibling);
+fieldSet.parentNode.insertBefore(clearAll, fieldSet.nextSibling);
 
 const radios = document.querySelectorAll('input[name="brushSize"]');
+
+clearAll.addEventListener('click', () => {
+    const size = canvas_size()
+    let i = 0
+    let grids = document.querySelectorAll('.grid-box')
+    while (i < size * size) {
+        grids[i].style.backgroundColor = 'white'
+    }
+})
+
+console.log(clearAll)
 
 radios.forEach(
     (radio) => { radio.addEventListener('click', (e) => { e.checked = true; console.log(e) }); }
@@ -130,8 +149,8 @@ function sketchPad(size){
     //     });
     // }
     
-    checkedRadio = document.querySelector('input[name="mode"]:checked');
-
+    checkedRadio = document.querySelector('input[name="brushSize"]:checked') ?? radio1;
+    console.log(checkedRadio)
     let j = 0;
     while (j < size * size) {
         let grid = document.createElement("div");
@@ -159,24 +178,23 @@ function sketchPad(size){
 
 }
 
-
 btnReqChange.addEventListener("click", function() {
-    
+
     if (warningMessage.innerText.length !== 0) {warningMessage.innerText = '';}
     
-    if (inputElement.value.trim().length === 0 || isNaN(inputElement.value.trim())) {
-        console.log(inputElement.value)
-        warningMessage.innerText = `Error: You inserted the wrong value. It's not valid`
+    if (canvas_size().trim().length === 0 || isNaN(canvas_size().trim())) {
+        warningMessage.innerText = `Error: You inserted the wrong value. Only numbers allowed`
         container.innerHTML = ''
         container.style = ''
 
     } else {
-        let size = Number(inputElement.value) > 0 ? Number(inputElement.value) : Math.abs(Number(inputElement.value)) ;
+        let size = Number(canvas_size()) > 0 ? Number(canvas_size()) : Math.abs(Number(canvas_size())) ;
         let selectedOption = filterElement.selectedOptions[0]
 
         if(size > 0 && size <=100){
             sketchPad(size);
-            processOption(selectedOption)
+            processOption(selectedOption);
+            
         }
         inputElement.value = '';
     }
