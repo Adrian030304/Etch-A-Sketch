@@ -5,10 +5,52 @@ let inputElement = document.createElement('input');
 let warningMessage = document.createElement('span');
 const filterLabel = document.createElement('label')
 const filterElement = document.createElement('select');
+const fieldSet = document.createElement('fieldset');
 
-radio1 = createInputElement('radio-1', 'radio')
+
+const legendElement = document.createElement('legend');
+legendElement.innerText = "Choose your brush size: "
+
+function mount(first_element, second_element) {
+    const div = document.createElement('div');
+    div.className = 'test'
+    div.innerHTML = `${first_element.outerHTML} ${second_element.outerHTML}`
+    console.log(div)
+    return div;
+}
+
+const createInputElement = (input_id, input_type) => {
+    let r = document.createElement('input');
+    r.id = input_id;
+    r.type = input_type;
+    return r;
+}
+
+const createLabel = (label_for, inner_text) => {
+    let l = document.createElement('label');
+    l.htmlFor  = label_for;
+    l.innerText = inner_text;
+    return l;
+}
+
+radio1 = createInputElement('radio1', 'radio')
 radio2 = createInputElement('radio2', 'radio')
 
+radio1.value = 'singular';
+radio2.value = 'multi';
+
+radio1.name = 'brushSize'
+radio2.name = 'brushSize'
+
+labelSingular = createLabel('radio1', 'Singular')
+labelMulti = createLabel('radio2', 'Multi')
+
+let small_brush = mount(radio1, labelSingular)
+let bigger_brush = mount(radio2, labelMulti)
+
+fieldSet.appendChild(legendElement);
+fieldSet.appendChild(small_brush);
+fieldSet.appendChild(bigger_brush)
 
 inputElement.type = 'number';
 inputElement.placeholder = ' (1 - 100) '
@@ -25,6 +67,10 @@ btnReqChange.parentElement.appendChild(filterLabel);
 
 filterLabel.parentNode.insertBefore(filterElement, filterLabel.nextSibling);
 filterElement.parentNode.insertBefore(warningMessage, filterElement.nextSibling);
+warningMessage.parentNode.insertBefore(fieldSet, warningMessage.nextSibling);
+
+
+
 
 const options = ['Square', 'Blank', 'Round']
 
@@ -37,19 +83,6 @@ options.forEach(option => {
     }
 );
 
-const createInputElement = (input_id, input_type) => {
-    let r = document.createElement('input');
-    r.id = input_id;
-    r.type = input_type;
-    return r;
-}
-
-const createLabel = (label_for) => {
-    let l = document.createElement('label');
-    l.for = label_for;
-    return l;
-}
-
 
 function processOption(option) {
     
@@ -60,9 +93,6 @@ function processOption(option) {
     squares.forEach(s => s.classList.add(option));
 
 }
-
-
-
 
 
 const randomColor = () => {
