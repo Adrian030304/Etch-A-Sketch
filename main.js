@@ -129,13 +129,8 @@ function sketchPad(size){
     //         console.log(e.target)
     //     });
     // }
-    let checkedRadio;
-    for (const radio of radios) {
-        if (radio.checked) {
-            checkedRadio = radio;
-        }
-    }
-    console.log(checkedRadio)
+    
+    checkedRadio = document.querySelector('input[name="mode"]:checked');
 
     let j = 0;
     while (j < size * size) {
